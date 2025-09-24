@@ -1,3 +1,4 @@
+```
 /Front
 ├── /public                 # 이미지, 폰트 등 정적 파일
 ├── /src
@@ -17,3 +18,4 @@
 ├── next.config.js          # Next.js 설정
 ├── package.json            # 프로젝트 정보 및 의존성 목록
 └── tsconfig.json           # TypeScript 설정
+```
