@@ -1,3 +1,8 @@
+
+// -------------------------------
+// (1) 채팅방/메시지/위시리스트 원본 데이터
+// -------------------------------
+
 // 임시 채팅방 목록 데이터
 export const chatRooms = [
   {
@@ -83,14 +88,14 @@ export const messages = [
 // 찜한 상품 목록 데이터 (새로 추가)
 export const wishlistItems = [
   {
-    id: 101, // 상품의 고유 ID (상세 페이지 이동 시 사용)
+    id: 101,
     title: "아이폰 15 Pro 256GB 스페이스 블랙 거의 새것!",
     price: 1150000,
     image: "/iphone-14-pro-purple.jpg",
     location: "서울시 강남구",
     likes: 128,
     comments: 15,
-    wishlistedAt: "2023년 10월 28일", // 찜한 날짜
+    wishlistedAt: "2023년 10월 28일",
   },
   {
     id: 102,
@@ -123,3 +128,129 @@ export const wishlistItems = [
     wishlistedAt: "2023년 10월 22일",
   },
 ];
+
+// 전체 상품(원본) — 일부 중복 ID/누락 필드 있음
+export const allProducts = [
+  {
+    id: 101,
+    title: "아이폰 15 Pro 256GB 스페이스 블랙 거의 새것!",
+    price: 1150000,
+    image: "/iphone-14-pro-purple.jpg",
+    location: "서울시 강남구",
+    likes: 128,
+    comments: 15,
+    wishlistedAt: "2023년 10월 28일",
+  },
+  {
+    id: 102,
+    title: "상태 좋은 헬리녹스 캠핑 의자 2개 팝니다",
+    price: 45000,
+    image: "/placeholder.jpg",
+    location: "경기도 수원시",
+    likes: 45,
+    comments: 8,
+    wishlistedAt: "2023년 10월 27일",
+  },
+  {
+    id: 103,
+    title: "소니 WH-1000XM5 노이즈캔슬링 헤드폰 (실버)",
+    price: 380000,
+    image: "/sony-wh-1000xm5.png",
+    location: "부산시 해운대구",
+    likes: 210,
+    comments: 22,
+    wishlistedAt: "2023년 10월 25일",
+  },
+  {
+    id: 104,
+    title: "LG 스탠바이미 Go 한정판 모델",
+    price: 850000,
+    image: "/placeholder.jpg",
+    location: "서울시 마포구",
+    likes: 98,
+    comments: 5,
+    wishlistedAt: "2023년 10월 22일",
+  },
+  {
+    id: 101,
+    title: "아이폰 15 Pro 256GB 스페이스 블랙 거의 새것!",
+    price: 1150000,
+    image: "/iphone-14-pro-purple.jpg",
+    location: "서울시 강남구",
+    likes: 128,
+    comments: 15,
+    wishlistedAt: "2023년 10월 28일",
+  },
+  {
+    id: 102,
+    title: "상태 좋은 헬리녹스 캠핑 의자 2개 팝니다",
+    price: 45000,
+    image: "/placeholder.jpg",
+    location: "경기도 수원시",
+    likes: 45,
+    comments: 8,
+    wishlistedAt: "2023년 10월 27일",
+  },
+  {
+    id: 107,
+    title: "소니 WH-1000XM5 노이즈캔슬링 헤드폰 (실버)",
+    price: 380000,
+    image: "/sony-wh-1000xm5.png",
+    location: "부산시 해운대구",
+    likes: 210,
+    comments: 22,
+    wishlistedAt: "2023년 10월 25일",
+  },
+  {
+    id: 105,
+    title: "LG 스탠바이미 Go 한정판 모델",
+    price: 850000,
+    image: "/placeholder.jpg",
+    location: "서울시 마포구",
+    likes: 98,
+    comments: 5,
+    wishlistedAt: "2023년 10월 22일",
+  },
+];
+
+// -------------------------------
+// (2) 제품 타입 & 정규화된 products 배열
+// -------------------------------
+
+export type Product = {
+  id: number | string;
+  title: string;
+  price: number;
+  image?: string;        // 단일 이미지 (원본 호환용)
+  images?: string[];     // 다중 이미지 (UI용 표준)
+  category?: string;
+  condition?: string;
+  likes?: number;
+  comments?: number;
+  chats?: number;
+  views?: number;
+  timeAgo?: string;
+  location?: string;
+  originalPrice?: number;
+  isNegotiable?: boolean;
+  createdAt?: string;    // 정렬 기준(ISO 문자열 추천)
+};
+
+/**
+ * allProducts → UI에서 안전하게 쓰도록 정규화
+ * - image만 있으면 images: [image]
+ * - 누락 필드에 기본값
+ */
+export const products: Product[] = allProducts.map((p: any) => {
+  const images = Array.isArray(p.images) ? p.images : (p.image ? [p.image] : []);
+  return {
+    ...p,
+    images,
+    category: p.category ?? "기타",
+    condition: p.condition ?? "상급",
+    likes: p.likes ?? 0,
+    chats: p.chats ?? p.comments ?? 0,
+    views: p.views ?? 0,
+    createdAt: p.createdAt ?? new Date().toISOString(),
+  };
+});
