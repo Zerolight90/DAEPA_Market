@@ -10,7 +10,7 @@ State Management: Recoil
 
 Deployment: Vercel
 ```
-
+```
 /Front
 ├── 🌐 /public               # 이미지, 폰트 등 정적 에셋
 │
