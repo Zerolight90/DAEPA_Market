@@ -14,11 +14,14 @@ import {
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import Image from "next/image";
+import daepaLogo from "@/public/DAEPA_Logo.png";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const router = useRouter();
+
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -92,11 +95,17 @@ export default function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* 로고 */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-10 h-10 daepa-gradient rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">대</span>
-          </div>
-          <span className="text-2xl font-bold text-primary">대파</span>
-        </Link>
+
+        <div className="relative w-40 h-20">
+          <Image
+              src={daepaLogo}
+              alt="대파 로고"
+              fill // 부모 요소(div)에 맞춰 꽉 채우기
+              style={{ objectFit: 'contain' }} // 이미지가 잘리지 않도록 설정
+          />
+        </div>
+        {/*<span className="text-2xl font-bold text-primary">대파</span>*/}
+      </Link>
 
         {/* 검색바 (데스크탑) */}
         <div className="hidden flex-1 max-w-2xl mx-8 md:block">

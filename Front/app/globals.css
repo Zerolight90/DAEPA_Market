@@ -140,12 +140,12 @@
 
 /* 대파 그라데이션 스타일 추가 */
 .daepa-gradient {
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+  background-color: #16a34a;
 }
 
-.daepa-gradient:hover {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 50%, #166534 100%);
-}
+/*.daepa-gradient:hover {*/
+/*  background: linear-gradient(135deg, #16a34a 0%, #15803d 50%, #166534 100%);*/
+/*}*/
 
 /* 라인 클램프 유틸리티 */
 .line-clamp-1 {
