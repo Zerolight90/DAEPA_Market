@@ -17,3 +17,12 @@ spring:
 logging:
   level:
     root: info
+
+kcp:
+  siteCd: "T0007"         # 테스트용 사이트 코드 (예시)
+  certKeyPath: "/path/to/your/cert.pem"  # KCP 인증서 (pem) 파일 경로
+  privateKey: "-----BEGIN PRIVATE KEY-----\n..."  # 또는 키 내용
+  # URL 엔드포인트 (테스트 서버)
+  api:
+    register: "https://testsmpay.kcp.co.kr/trade/register.do"
+    stateChange: "https://stg-spl.kcp.co.kr/gw/mod/v1/cancel"
