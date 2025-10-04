@@ -15,7 +15,7 @@ export default function Footer() {
             </div>
             <p className="text-sm text-muted-foreground">신선하고 안전한 중고거래의 새로운 기준</p>
             <div className="text-sm text-muted-foreground">
-              <p>대표: 전상준</p>
+              <p>대표: 정상준</p>
               <p>사업자등록번호: 123-45-67890</p>
               <p>통신판매업신고: 2025-서울강남-0923</p>
             </div>
@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border/40 mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2025 대파. All rights reserved.</p>
+
         </div>
       </div>
     </footer>

@@ -126,6 +126,7 @@ export default function BarterPage() {
     const [offerMemo, setOfferMemo] = useState("안녕하세요! 교환 제안드립니다. 일정/장소는 협의 가능해요.")
 
     const filtered = useMemo(() => {
+        {/*검색함수*/}
         const q = query.toLowerCase().trim()
         return DEMO_BARTERS.filter((item) => {
             const searchHit =
